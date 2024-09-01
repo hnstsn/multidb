@@ -1,0 +1,35 @@
+spring:
+  application:
+    name: multidb
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.CamelCaseToUnderscoresNamingStrategy
+        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
+  mysql-db:
+    jpa:
+      database-platform: org.hibernate.dialect.MySQLDialect
+    datasource:
+      hikari:
+        jdbc-url: jdbc:mysql://localhost:3306/item
+        username: mysql_username
+        password: mysql_password
+        driverClassName: com.mysql.cj.jdbc.Driver
+  postgres-db:
+    jpa:
+      database-platform: org.hibernate.dialect.PostgreSQLDialect
+    datasource:
+      hikari:
+        driver-class-name: org.postgresql.Driver
+        jdbc-url: jdbc:postgresql://localhost:5432/postgres?characterEncoding=UTF-8
+        username: postgres_username
+        password: postgres_password
+
+logging:
+  level:
+    root: INFO
+    com.zaxxer.hikari: DEBUG   # HikariCP의 디버그 로그 활성화
+    org.hibernate.SQL: DEBUG   # Hibernate SQL 디버그 로그
